@@ -36,7 +36,6 @@ import org.arquillian.cube.openshift.impl.install.OpenshiftResourceInstaller;
 import org.arquillian.cube.openshift.impl.locator.OpenshiftKubernetesResourceLocator;
 import org.arquillian.cube.openshift.impl.namespace.OpenshiftNamespaceService;
 import org.csanchez.jenkins.plugins.kubernetes.pipeline.NamespaceAction;
-import org.jenkinsci.plugins.workflow.steps.StepContext;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -49,6 +48,7 @@ import hudson.model.TaskListener;
 import io.fabric8.kubernetes.client.utils.Utils;
 import io.fabric8.kubernetes.clnt.v2_2.KubernetesClient;
 import io.fabric8.openshift.clnt.v2_2.OpenShiftClient;
+import org.jenkinsci.plugins.workflow.steps.StepContext;
 
 public abstract class AbstractSessionManagerStepExecution<S extends AbstractSessionManagerStep> extends AbstractStepExecution<S> {
 
@@ -58,6 +58,10 @@ public abstract class AbstractSessionManagerStepExecution<S extends AbstractSess
     protected transient SessionManager sessionManager;
 
     protected boolean isOpenShift;
+
+    AbstractSessionManagerStepExecution(StepContext context) {
+        super(context);
+    }
 
     /**
      * Called when the execution starts
