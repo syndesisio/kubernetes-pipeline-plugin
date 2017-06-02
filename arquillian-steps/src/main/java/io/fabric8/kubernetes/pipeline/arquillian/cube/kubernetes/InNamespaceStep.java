@@ -26,7 +26,7 @@ import java.util.Map;
 
 import hudson.Extension;
 
-public class CreateNamespaceStep extends AbstractStep implements Serializable {
+public class InNamespaceStep extends AbstractStep implements Serializable {
 
     private static final long serialVersionUID = 5588861066775717487L;
 
@@ -40,7 +40,7 @@ public class CreateNamespaceStep extends AbstractStep implements Serializable {
     private final Boolean namespaceDestroyEnabled;
 
     @DataBoundConstructor
-    public CreateNamespaceStep(String cloud, String name, String prefix, Map<String, String> labels, Map<String, String> annotations, Boolean namespaceLazyCreateEnabled, Boolean namespaceDestroyEnabled) {
+    public InNamespaceStep(String cloud, String name, String prefix, Map<String, String> labels, Map<String, String> annotations, Boolean namespaceLazyCreateEnabled, Boolean namespaceDestroyEnabled) {
         super(cloud);
         this.name = name;
         this.prefix = prefix;
@@ -77,14 +77,14 @@ public class CreateNamespaceStep extends AbstractStep implements Serializable {
 
     @Override
     public StepExecution start(StepContext context) throws Exception {
-        return new CreateNamespaceStepExecution(this, context);
+        return new InNamespaceStepExecution(this, context);
     }
 
     @Extension
     public static class DescriptorImpl extends AbstractStepDescriptorImpl {
 
        public DescriptorImpl() {
-            super(CreateNamespaceStepExecution.class);
+            super(InNamespaceStepExecution.class);
         }
 
         public DescriptorImpl(Class<? extends StepExecution> executionType) {
@@ -93,7 +93,7 @@ public class CreateNamespaceStep extends AbstractStep implements Serializable {
 
         @Override
         public String getFunctionName() {
-            return "insideNamespace";
+            return "inNamespace";
         }
 
         @Override

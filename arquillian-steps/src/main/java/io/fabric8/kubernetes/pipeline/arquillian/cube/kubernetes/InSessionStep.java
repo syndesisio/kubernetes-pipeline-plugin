@@ -27,18 +27,18 @@ import java.util.Map;
 
 import hudson.Extension;
 
-public class SessionStep extends AbstractSessionManagerStep implements Serializable {
+public class InSessionStep extends AbstractSessionManagerStep implements Serializable {
 
     private static final long serialVersionUID = 5588861066775717487L;
 
     @DataBoundConstructor
-    public SessionStep(String cloud, String name, String prefix, Map<String, String> labels, Map<String, String> annotations, String environmentSetupScriptUrl, String environmentTeardownScriptUrl, String environmentConfigUrl, List<String> environmentDependencies, Long waitTimeout, List<String> waitForServiceList, Boolean namespaceLazyCreateEnabled, Boolean namespaceCleanupEnabled, Boolean namespaceDestroyEnabled) {
+    public InSessionStep(String cloud, String name, String prefix, Map<String, String> labels, Map<String, String> annotations, String environmentSetupScriptUrl, String environmentTeardownScriptUrl, String environmentConfigUrl, List<String> environmentDependencies, Long waitTimeout, List<String> waitForServiceList, Boolean namespaceLazyCreateEnabled, Boolean namespaceCleanupEnabled, Boolean namespaceDestroyEnabled) {
        super(cloud, name, prefix, labels, annotations, environmentSetupScriptUrl, environmentTeardownScriptUrl, environmentConfigUrl, environmentDependencies, waitTimeout, waitForServiceList, namespaceLazyCreateEnabled, namespaceCleanupEnabled, namespaceDestroyEnabled);
     }
 
     @Override
     public StepExecution start(StepContext context) throws Exception {
-        return new SessionStepExecution(this, context);
+        return new InSessionStepExecution(this, context);
     }
 
 
@@ -46,7 +46,7 @@ public class SessionStep extends AbstractSessionManagerStep implements Serializa
     public static class DescriptorImpl extends AbstractStepDescriptorImpl {
 
        public DescriptorImpl() {
-            super(SessionStepExecution.class);
+            super(InSessionStepExecution.class);
         }
 
         public DescriptorImpl(Class<? extends StepExecution> executionType) {
