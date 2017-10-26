@@ -26,7 +26,7 @@
 
     <groupId>io.fabric8</groupId>
     <artifactId>kubernetes-pipeline-project</artifactId>
-    <version>1.1.0-syndesis-003</version>
+    <version>1.1.0-SNAPSHOT</version>
 
     <name>Kubernetes :: Pipeline :: Project</name>
     <description>Use Docker Images and Kubernetes Pods from pipeline.</description>
