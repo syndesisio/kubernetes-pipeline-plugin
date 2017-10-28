@@ -70,7 +70,7 @@
         <java.level>8</java.level>
         <jenkins.version>2.7.4</jenkins.version>
 
-        <arquillian-cube.version>1.7.1-syndesis-001</arquillian-cube.version>
+        <arquillian-cube.version>1.8.0</arquillian-cube.version>
         <commons-lang3.version>3.4</commons-lang3.version>
         <docker-client.version>1.2.0</docker-client.version>
         <es.version>2.1.1</es.version>
