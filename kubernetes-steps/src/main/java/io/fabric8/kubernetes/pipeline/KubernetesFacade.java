@@ -20,6 +20,9 @@ import org.csanchez.jenkins.plugins.kubernetes.ContainerEnvVar;
 import org.csanchez.jenkins.plugins.kubernetes.ContainerTemplate;
 import org.csanchez.jenkins.plugins.kubernetes.PodEnvVar;
 import org.csanchez.jenkins.plugins.kubernetes.PodTemplate;
+import org.csanchez.jenkins.plugins.kubernetes.model.KeyValueEnvVar;
+import org.csanchez.jenkins.plugins.kubernetes.model.SecretEnvVar;
+import org.csanchez.jenkins.plugins.kubernetes.model.TemplateEnvVar;
 import org.csanchez.jenkins.plugins.kubernetes.volumes.PodVolume;
 
 import io.fabric8.docker.client.utils.Utils;
@@ -124,14 +127,18 @@ public final class KubernetesFacade implements Closeable {
             List<EnvVar> env = new ArrayList<EnvVar>();
 
             if (podTemplate.getEnvVars() != null) {
-                for (PodEnvVar podEnvVar : podTemplate.getEnvVars()) {
-                    env.add(new EnvVarBuilder().withName(podEnvVar.getKey()).withValue(podEnvVar.getValue()).build());
+                for (TemplateEnvVar envVar : podTemplate.getEnvVars()) {
+                    if (envVar instanceof KeyValueEnvVar) {
+                        env.add(new EnvVarBuilder().withName(envVar.getKey()).withValue(((KeyValueEnvVar) envVar).getValue()).build());
+                    }
                 }
             }
 
             if (c.getEnvVars() != null) {
-                for (ContainerEnvVar containerEnvVar : c.getEnvVars()) {
-                    env.add(new EnvVarBuilder().withName(containerEnvVar.getKey()).withValue(containerEnvVar.getValue()).build());
+                for (TemplateEnvVar envVar : c.getEnvVars()) {
+                    if (envVar instanceof KeyValueEnvVar) {
+                        env.add(new EnvVarBuilder().withName(envVar.getKey()).withValue(((KeyValueEnvVar) envVar).getValue()).build());
+                    }
                 }
             }
 
