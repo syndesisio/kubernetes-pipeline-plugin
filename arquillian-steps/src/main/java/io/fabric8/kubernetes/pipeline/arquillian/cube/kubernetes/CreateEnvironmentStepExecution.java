@@ -33,7 +33,7 @@ public class CreateEnvironmentStepExecution extends AbstractSessionManagerStepEx
     @Override
     public boolean onStart(SessionManager sessionManager) {
         try {
-            sessionManager.createEnvironment(session);
+            sessionManager.createEnvironment();
             getContext().onSuccess(true);
         } catch (Throwable t) {
             getContext().onFailure(t);

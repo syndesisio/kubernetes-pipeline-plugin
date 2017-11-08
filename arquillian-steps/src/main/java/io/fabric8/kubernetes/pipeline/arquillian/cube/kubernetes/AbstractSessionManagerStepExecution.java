@@ -46,8 +46,8 @@ import java.util.List;
 import hudson.model.Run;
 import hudson.model.TaskListener;
 import io.fabric8.kubernetes.client.utils.Utils;
-import io.fabric8.kubernetes.clnt.v2_5.KubernetesClient;
-import io.fabric8.openshift.clnt.v2_5.OpenShiftClient;
+import io.fabric8.kubernetes.clnt.v2_6.KubernetesClient;
+import io.fabric8.openshift.clnt.v2_6.OpenShiftClient;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 
 public abstract class AbstractSessionManagerStepExecution<S extends AbstractSessionManagerStep> extends AbstractStepExecution<S> {
@@ -92,7 +92,7 @@ public abstract class AbstractSessionManagerStepExecution<S extends AbstractSess
         String sessionId = generateSessionId();
         String namespace = generateNamespaceId(sessionId);
 
-        client = getKubernetesClient();
+        client = getiubernetesClient();
         isOpenShift = client.isAdaptable(OpenShiftClient.class);
 
         boolean isNamespaceCleanupEnabled = getStep().isNamespaceCleanupEnabled() != null

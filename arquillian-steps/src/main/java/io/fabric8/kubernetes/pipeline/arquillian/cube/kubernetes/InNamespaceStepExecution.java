@@ -27,8 +27,8 @@ import org.jenkinsci.plugins.workflow.steps.EnvironmentExpander;
 
 import hudson.model.Run;
 import hudson.model.TaskListener;
-import io.fabric8.kubernetes.clnt.v2_5.KubernetesClient;
-import io.fabric8.openshift.clnt.v2_5.OpenShiftClient;
+import io.fabric8.kubernetes.clnt.v2_6.KubernetesClient;
+import io.fabric8.openshift.clnt.v2_6.OpenShiftClient;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 
 
