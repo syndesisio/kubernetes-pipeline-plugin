@@ -92,7 +92,7 @@ public abstract class AbstractSessionManagerStepExecution<S extends AbstractSess
         String sessionId = generateSessionId();
         String namespace = generateNamespaceId(sessionId);
 
-        client = getiubernetesClient();
+        client = getKubernetesClient();
         isOpenShift = client.isAdaptable(OpenShiftClient.class);
 
         boolean isNamespaceCleanupEnabled = getStep().isNamespaceCleanupEnabled() != null
