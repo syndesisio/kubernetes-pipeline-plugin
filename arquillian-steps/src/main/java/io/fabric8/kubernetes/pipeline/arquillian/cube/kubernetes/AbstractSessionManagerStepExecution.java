@@ -33,7 +33,6 @@ import org.arquillian.cube.kubernetes.impl.install.DefaultResourceInstaller;
 import org.arquillian.cube.kubernetes.impl.locator.DefaultKubernetesResourceLocator;
 import org.arquillian.cube.kubernetes.impl.namespace.DefaultNamespaceService;
 import org.arquillian.cube.openshift.impl.install.OpenshiftResourceInstaller;
-import org.arquillian.cube.openshift.impl.locator.OpenshiftKubernetesResourceLocator;
 import org.arquillian.cube.openshift.impl.namespace.OpenshiftNamespaceService;
 import org.csanchez.jenkins.plugins.kubernetes.pipeline.NamespaceAction;
 
@@ -131,7 +130,7 @@ public abstract class AbstractSessionManagerStepExecution<S extends AbstractSess
                 : new DefaultNamespaceService.ImmutableNamespaceService(client, configuration, labelProvider, logger);
 
         KubernetesResourceLocator resourceLocator = isOpenShift
-                ? new OpenshiftKubernetesResourceLocator()
+                ? new ImmutableOpenshiftKubernetesResourceLocator(client, configuration)
                 : new DefaultKubernetesResourceLocator();
 
 
